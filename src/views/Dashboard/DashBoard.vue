@@ -27,7 +27,7 @@
                 <table class="table mt-5">
                     <thead>
                         <tr>
-                            <td>Recordings</td>
+                            <td width="15%">Recordings</td>
                             <td>Title</td>
                             <td>Views</td>
                             <td>Size</td>
@@ -36,7 +36,59 @@
                     </thead>
                     <tbody>
                         <tr>
-
+                            <td>
+                                <img src="../../assets/thumbnail.png" alt="" class="img-fluid">
+                            </td>
+                            <td>
+                                <p>Getting it right the first time</p>
+                                <span class="text-muted" style="font-family: 'Poppin'; font-size: 15px;">The Video description is shown here if the user has added it.</span>
+                            </td>
+                            <td>324</td>
+                            <td>923 KB</td>
+                            <td>3 Months Ago</td>
+                            <td><i class="bi bi-three-dots"></i></td>
+                        </tr>
+                        <tr>
+                            
+                            <td>
+                                <img src="../../assets/thumbnail.png" alt="" class="img-fluid">
+                            </td>
+                            <td>
+                                <p>Getting it right the first time</p>
+                                <span class="text-muted" style="font-family: 'Poppin'; font-size: 15px;">The Video description is shown here if the user has added it.</span>
+                            </td>
+                            <td>324</td>
+                            <td>923 KB</td>
+                            <td>3 Months Ago</td>
+                            <td><i class="bi bi-three-dots"></i></td>
+                        </tr>
+                        <tr>
+            
+                            <td>
+                                <img src="../../assets/thumbnail.png" alt="" class="img-fluid">
+                            </td>
+                            <td>
+                                <p>Getting it right the first time</p>
+                                <span class="text-muted" style="font-family: 'Poppin'; font-size: 15px;">The Video description is shown here if the user has added it.</span>
+                            </td>
+                            <td>324</td>
+                            <td>923 KB</td>
+                            <td>3 Months Ago</td>
+                            <td><i class="bi bi-three-dots"></i></td>
+                        </tr>
+                        <tr>
+                            
+                            <td>
+                                <img src="../../assets/thumbnail.png" alt="" class="img-fluid">
+                            </td>
+                            <td>
+                                <p>Getting it right the first time</p>
+                                <span class="text-muted" style="font-family: 'Poppin'; font-size: 15px;">The Video description is shown here if the user has added it.</span>
+                            </td>
+                            <td>324</td>
+                            <td>923 KB</td>
+                            <td>3 Months Ago</td>
+                            <td><i class="bi bi-three-dots"></i></td>
                         </tr>
                     </tbody>
                 </table>
@@ -80,6 +132,12 @@
 
 
 <style scoped>
+table td,th {
+    border: none;
+    color: #21455E;
+    font-family: 'Poppins';
+    font-size: 16px;
+}
 .btn {
     border-radius: 50px;
 }
