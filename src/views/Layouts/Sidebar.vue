@@ -4,7 +4,9 @@
       <div class="yellow">
         <div class="white"></div>
       </div>
-      <h5 class="headertext">Adilo</h5>
+      <h5 class="headertext">
+        <router-link to="/">Adilo</router-link>
+        </h5>
       <nav class="header-nav ms-auto mx-5">
         <ul class="d-flex align-items-center">
           <li class="nav-item pe-3">

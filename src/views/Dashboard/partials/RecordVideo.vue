@@ -21,23 +21,54 @@
 <script>
 export default {
     name: "RecordVideo",
+    data() {
+        return {
+            recordOptions: {
+            },
+            awaitingPermission: false
+        };
+    },
+    methods: {
+        startRecording() {
+            const constraints = {
+                video: this.recordOptions.camera || this.recordOptions.screen,
+                audio: this.recordOptions.microphone
+            };
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(() => {
+                    // Use the stream for recording
+                    console.log('Permission granted. Start recording...');
+                    // Your recording logic here
+                })
+                .catch(err => {
+                    console.error('Permission denied for media devices', err);
+                    // Handle errors or display user messages for permission denial
+                });
+        }
+    },
+    mounted() {
+        this.recordOptions = this.$route.params.recordOptions
+
+        this.startRecording();
+    }
 }
 </script>
 
 <style scoped>
 .all {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
-    text-align: center; 
+    text-align: center;
 }
+
 .screen {
     background: #21455E 0% 0% no-repeat padding-box;
     border-radius: 8px;
     opacity: 1;
     width: 965px;
     height: 518px;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
 /* You can add additional styling for the button if needed */
@@ -48,7 +79,8 @@ export default {
     color: #FFFFFF;
     border-radius: 20px;
 }
-.live{
+
+.live {
     font-family: 'Poppins';
     font-size: 14px;
 }
