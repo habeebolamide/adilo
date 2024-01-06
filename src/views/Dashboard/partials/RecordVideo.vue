@@ -1,98 +1,129 @@
 <template>
     <div>
-        <div class="container">
-            <p class="text-left live">Live Preview</p>
-            <div class="ms-auto all">
-                <div class="screen" v-if="!permission">
-
-                </div>
-                <div class="screen" v-else>
-                    <video id="videoElement" autoplay playsinline></video>
-                </div>
-                <div class="startbtn">
-                    <button class="btn" :disabled="!permission">
-                        <span>
-                            Start Recording
-                        </span>
-                    </button>
-                </div>
-            </div>
+      <div class="container">
+        <p class="text-left live">Live Preview</p>
+        <div class="ms-auto all">
+          <div class="screen">
+            <video id="videoElement" v-show="showvideo" autoplay playsinline :controls="playingrecord"></video>
+          </div>
+          <div class="startbtn">
+            <button class="btn" :disabled="!showvideo" @click="record">
+              <span>Start Recording</span>
+            </button>
+            <button class="btn" :disabled="!showvideo" @click="stop">
+              <span>Stop Recording</span>
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-</template>
-
-<script>
-export default {
+  </template>
+  
+  <script>
+  export default {
     name: "RecordVideo",
     data() {
-        return {
-            recordOptions: {
-            },
-            permission:false,
-            awaitingPermission: false
-        };
+      return {
+        recordOptions: {},
+        showvideo: false,
+        mediaRecorder: null,
+        chunks: [],
+        srcObject: null,
+        playingrecord:false
+      };
     },
     methods: {
-        startRecording() {
-            const constraints = {
-                video: this.recordOptions.camera || this.recordOptions.screen,
-                audio: this.recordOptions.microphone
-            };
-            navigator.mediaDevices.getUserMedia(constraints)
-                .then((stream) => {
-                    const videoElement = document.getElementById('videoElement');
-
-                    // Attach the stream to the video element
-                    videoElement.srcObject = stream;
-
-                    // Play the video stream in the video element
-                    videoElement.play()
-                        .catch(function (error) {
-                            console.error('Error playing the video stream:', error);
-                        });
-                })
-                .catch(err => {
-                    console.error('Permission denied for media devices', err);
-                    // Handle errors or display user messages for permission denial
-                });
+      startRecording() {
+        const constraints = {
+          video: this.recordOptions.camera || this.recordOptions.screen,
+          audio: this.recordOptions.microphone
+        };
+        navigator.mediaDevices.getUserMedia(constraints)
+          .then((stream) => {
+            const videoElement = document.getElementById('videoElement');
+            videoElement.srcObject = stream;
+            this.srcObject = stream;
+            videoElement.play()
+              .catch(function (error) {
+                console.error('Error playing the video stream:', error);
+              });
+            this.showvideo = true;
+          })
+          .catch(err => {
+            console.error('Permission denied for media devices', err);
+            // Handle errors or display user messages for permission denial
+          });
+      },
+      record() {
+        if (this.srcObject) {
+            console.log(1234);
+          this.mediaRecorder = new MediaRecorder(this.srcObject);
+          this.chunks = [];
+  
+          this.mediaRecorder.ondataavailable = (event) => {
+            this.chunks.push(event.data);
+          };
+  
+          this.mediaRecorder.onstop = () => {
+            const recordedBlob = new Blob(this.chunks, { type: 'video/webm' });
+            console.log(recordedBlob);
+            const videoElement = document.getElementById('videoElement');
+            videoElement.src = URL.createObjectURL(recordedBlob);
+          };
+  
+          this.mediaRecorder.start();
         }
+      },
+      stop() {
+      if (this.mediaRecorder && this.mediaRecorder.state !== 'inactive') {
+        this.mediaRecorder.stop();
+        const recordedBlob = new Blob(this.chunks, { type: 'video/webm' });
+        const videoElement = document.getElementById('videoElement');
+
+        videoElement.srcObject = null; // Clear the live stream
+        videoElement.src = URL.createObjectURL(recordedBlob); // Set recorded video as source
+        this.playingrecord = true
+        videoElement.play(); // Play the recorded video
+        this.showvideo = true; // Show the recorded video
+      }
+    }
     },
     mounted() {
-        this.recordOptions = this.$route.params.recordOptions
-
-        this.startRecording();
+      this.recordOptions = this.$route.params.recordOptions;
+      this.startRecording();
     }
-}
-</script>
-
-<style scoped>
-.all {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.screen {
-    background: #21455E 0% 0% no-repeat padding-box;
-    border-radius: 8px;
-    opacity: 1;
-    width: 965px;
-    height: 518px;
-    margin-bottom: 20px;
-}
-
-/* You can add additional styling for the button if needed */
-.startbtn button {
-    padding: 10px 35px;
-    font-size: 16px;
-    background: #0DABD8 0% 0% no-repeat padding-box;
-    color: #FFFFFF;
-    border-radius: 20px;
-}
-
-.live {
-    font-family: 'Poppins';
-    font-size: 14px;
-}
-</style>
+  };
+  </script>
+  
+  <style scoped>
+  .all {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+  
+  .screen {
+      background: #21455E 0% 0% no-repeat padding-box;
+      border-radius: 8px;
+      opacity: 1;
+      width: 965px;
+      height: 518px;
+      margin-bottom: 20px;
+  }
+  
+  /* You can add additional styling for the button if needed */
+  .startbtn button {
+      padding: 10px 35px;
+      font-size: 16px;
+      background: #0DABD8 0% 0% no-repeat padding-box;
+      color: #FFFFFF;
+      border-radius: 20px;
+  }
+  
+  .live {
+      font-family: 'Poppins';
+      font-size: 14px;
+  }
+  </style>
+  
