@@ -3,14 +3,14 @@
         <div class="container">
             <p class="text-left live">Live Preview</p>
             <div class="ms-auto all">
-                <div class="screen">
+                <div class="screen" v-if="!permission">
 
                 </div>
-                <div class="screen">
+                <div class="screen" v-else>
                     <video id="videoElement" autoplay playsinline></video>
                 </div>
                 <div class="startbtn">
-                    <button class="btn" disabled>
+                    <button class="btn" :disabled="!permission">
                         <span>
                             Start Recording
                         </span>
@@ -28,6 +28,7 @@ export default {
         return {
             recordOptions: {
             },
+            permission:false,
             awaitingPermission: false
         };
     },
