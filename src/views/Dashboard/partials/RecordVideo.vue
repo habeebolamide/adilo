@@ -6,6 +6,9 @@
                 <div class="screen">
 
                 </div>
+                <div class="screen">
+                    <video id="videoElement" autoplay playsinline></video>
+                </div>
                 <div class="startbtn">
                     <button class="btn" disabled>
                         <span>
@@ -35,10 +38,17 @@ export default {
                 audio: this.recordOptions.microphone
             };
             navigator.mediaDevices.getUserMedia(constraints)
-                .then(() => {
-                    // Use the stream for recording
-                    console.log('Permission granted. Start recording...');
-                    // Your recording logic here
+                .then((stream) => {
+                    const videoElement = document.getElementById('videoElement');
+
+                    // Attach the stream to the video element
+                    videoElement.srcObject = stream;
+
+                    // Play the video stream in the video element
+                    videoElement.play()
+                        .catch(function (error) {
+                            console.error('Error playing the video stream:', error);
+                        });
                 })
                 .catch(err => {
                     console.error('Permission denied for media devices', err);
