@@ -4,15 +4,18 @@
       <div class="yellow">
         <div class="white"></div>
       </div>
-      <h5 class="headertext">
-        <router-link to="/">Adilo</router-link>
+      <router-link to="/">
+        <h5 class="headertext">
+        Adilo
         </h5>
-      <nav class="header-nav ms-auto mx-5">
-        <ul class="d-flex align-items-center">
+      </router-link>  
+      <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center nav-fix">
           <li class="nav-item pe-3">
             Projects
           </li>
           <li class="nav-item pe-3">
+            <div class="active"></div>
               Tools & App
           </li>
           <li class="nav-item pe-3">
@@ -106,6 +109,20 @@
   border-width: 0;
   background-color: #434446;
   margin-right: 20px;
+}
+.nav-fix {
+    margin-left: 150px !important;
+}
+.nav-fix li {
+    font-size: 19px;
+    font-family: "Poppins";
+    font-weight: 300;
+    padding-right: 2rem !important;
+}
+.active{
+  border-top:4px solid #0DABD8;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 </style>
 <style src="../../assets/css/styles.css" scoped></style>
