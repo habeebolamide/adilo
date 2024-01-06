@@ -1,6 +1,10 @@
 <template>
     <div>
-        <div class="container">
+        <div v-if="awaitingPermission" class="waiting-permission">
+            hekcfge
+        </div>
+        <div v-else>
+            <div class="container">
             <ul class="breadcrumbs">
                 <li>SnapByte</li>
                 <li>My Recording</li>
@@ -80,6 +84,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
     </div>
@@ -184,18 +189,21 @@ export default {
                 screen: false,
                 camera: false,
                 microphone: false
-            }
+            },
+            awaitingPermission: false
         };
     },
     methods: {
         startRecording() {
+            this.awaitingPermission = true
             const constraints = {
-                video: this.recordOptions.camera,
+                video: this.recordOptions.camera ,
                 audio: this.recordOptions.microphone
             };
 
             navigator.mediaDevices.getUserMedia(constraints)
                 .then(() => {
+                    this.$router.push('/record-video')
                     // Use the stream for recording
                     console.log('Permission granted. Start recording...');
                     // Your recording logic here

@@ -49,7 +49,7 @@
       <ul class="sidebar-nav mt-3" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link mx-3" href="#">
+          <a class="nav-link mx-3" href="/">
             <i class="bi bi-grid"></i>
             <span>My Recordings</span>
           </a>
@@ -112,24 +112,6 @@ export default {
   name: 'SideBar',
   data() {
     return {
-      authType: '',
-      menus: {},
-      alerts: [
-        {
-          id: 0,
-          title: 'Sales Report',
-          value: 15,
-          footer: 'Calculating x-axis bias... 65%',
-          color: 'danger',
-        },
-        {
-          id: 1,
-          title: 'Personal Responsibility',
-          value: 20,
-          footer: 'Provide required notes',
-          color: 'primary',
-        },
-      ],
     };
   },
   methods: {
@@ -150,16 +132,6 @@ export default {
     }
   },
   mounted() {
-    // if (document.getElementById('body').classList.contains("toggle-sidebar")) {
-    //     document.getElementById("header").style.width = '80%';
-    //     document.getElementById("header").style.marginLeft = '302px';
-    //     document.getElementById('body').classList.toggle('toggle-sidebar');
-    //   }
-    //   else {
-    //     document.getElementById('body').classList.toggle('toggle-sidebar');
-    //     document.getElementById("header").style.width = '100%';
-    //     document.getElementById("header").style.marginLeft = '0px';
-    //   }
   }
 };
 </script>

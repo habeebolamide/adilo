@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard/DashBoard.vue'
+import RecordVideo from '../views/Dashboard/partials/RecordVideo.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: Dashboard
+  },
+  {
+    path: '/record-video',
+    name: 'record',
+    component: RecordVideo
   },
 ]
 
