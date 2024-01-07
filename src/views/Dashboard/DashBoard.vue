@@ -16,14 +16,15 @@
                         <h2>My Recordings 25</h2>
                     </div>
                     <div class="col-md-8 ">
-                        <div class="btn btn-transparent transparent mr-2"><i class="bi bi-arrow-down-up pr-2" style="font-size: 14px;"></i>
+                        <div class="btn btn-transparent "><i class="bi bi-camera-video pr-2" style="font-size: 20px;"></i>
                             By Date</div>
-                        <div class="btn btn-transparent transparent mr-2"><img src="https://adilo.bigcommand.com/assets/filter.07b5b2a5.svg" alt="" class="img-fluid pr-2">
-                            Add Filter</div>
-                        <div class="btn btn-info text-white mr-2"><i class="bi bi-camera-video pr-2"
-                                style="font-size: 14px;"></i>
+                        <div class="btn btn-transparent "><i class="bi bi-camera-video pr-2" style="font-size: 20px;"></i>
+                            Add Filter
+                        </div>
+                        <div class="btn btn-info text-white"><i class="bi bi-camera-video pr-2"
+                                style="font-size: 20px;"></i>
                             New Request</div>
-                        <div class="btn btn-danger text-white" @click="$bvModal.show('record')"> <span class="rec">
+                        <div class="btn btn-danger text-white mx-3" @click="$bvModal.show('record')"> <span class="rec">
                                 REC</span> Start Recording</div>
                     </div>
                 </div>
@@ -188,7 +189,7 @@ label {
     display: inline-block;
     ;
     width: 40px;
-    height: 14;
+    height: 20px;
     background-color: #ccc;
     border-radius: 10px;
     position: relative;
@@ -232,14 +233,6 @@ label::before {
     color: white;
     width: 289px;
 }
-.transparent{
-    border: 1px solid #E2E5ED;
-    color: #637C8E;
-}
-.transparent:hover{
-    border: 1px solid #E2E5ED;
-    color: #637C8E;
-}
 </style>
 <script>
 
@@ -262,7 +255,27 @@ export default {
     methods: {
         startRecording() {
             var recordOptions = this.recordOptions
+            // this.awaitingPermission = true
+            // const constraints = {
+            //     video: this.recordOptions.camera,
+            //     audio: this.recordOptions.microphone
+            // };
+
             this.$router.push({ name: 'record', params: { recordOptions } });
+
+            // navigator.mediaDevices.getUserMedia(constraints)
+            //     .then(() => {
+            //         this.$router.push('/record-video')
+            //         // Use the stream for recording
+            //         console.log('Permission granted. Start recording...');
+            //         // Your recording logic here
+            //     })
+            //     .catch(err => {
+            //         console.error('Permission denied for media devices', err);
+            //         // Handle errors or display user messages for permission denial
+            //     });
+
+            this.showModal = false;
         }
     },
 }
