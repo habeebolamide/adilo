@@ -16,15 +16,15 @@
                         <h2>My Recordings 25</h2>
                     </div>
                     <div class="col-md-8 ">
-                        <div class="btn btn-transparent "><i class="bi bi-camera-video pr-2" style="font-size: 20px;"></i>
+                        <div class="btn btn-transparent transparent mr-2"><i class="bi bi-camera-video pr-2" style="font-size: 20px;"></i>
                             By Date</div>
-                        <div class="btn btn-transparent "><i class="bi bi-camera-video pr-2" style="font-size: 20px;"></i>
+                        <div class="btn btn-transparent transparent mr-2"><i class="bi bi-camera-video pr-2" style="font-size: 20px;"></i>
                             Add Filter
                         </div>
-                        <div class="btn btn-info text-white"><i class="bi bi-camera-video pr-2"
+                        <div class="btn btn-info text-white mr-2"><i class="bi bi-camera-video pr-2"
                                 style="font-size: 20px;"></i>
                             New Request</div>
-                        <div class="btn btn-danger text-white mx-3" @click="$bvModal.show('record')"> <span class="rec">
+                        <div class="btn btn-danger text-white" @click="$bvModal.show('record')"> <span class="rec">
                                 REC</span> Start Recording</div>
                     </div>
                 </div>
@@ -232,6 +232,14 @@ label::before {
     background-color: #0DABD8;
     color: white;
     width: 289px;
+}
+.transparent{
+    border: 1px solid #E2E5ED;
+    color: #637C8E;
+}
+.transparent:hover{
+    border: 1px solid #E2E5ED;
+    color: #637C8E;
 }
 </style>
 <script>
